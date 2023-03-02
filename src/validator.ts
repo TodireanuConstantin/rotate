@@ -48,12 +48,18 @@ const argv = z
   .transform((value, context) => {
     const file = value[2];
 
+    const result = z.string().url().safeParse(file);
+
+    if (result.success) {
+      return { path: result.data, isUrl: true };
+    }
+
     try {
       const path = resolve(file);
 
       accessSync(path, constants.R_OK);
 
-      return path;
+      return { path, isUrl: false };
     } catch {
       context.addIssue({ code: z.ZodIssueCode.custom });
 

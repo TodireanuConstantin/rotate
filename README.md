@@ -34,3 +34,8 @@ npm run test
 #
 ```
 
+Documentation:
+
+- [fast-csv](https://www.c2fo.io/fast-csv/docs/introduction/getting-started) - CSV Parser and Formatter
+- [Zod](https://zod.dev/) - TypeScript-first schema validation with static type inference
+

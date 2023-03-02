@@ -1,8 +1,8 @@
-import { createReadStream } from "fs";
 import { parse, format } from "fast-csv";
 
 import { validator } from "./validator";
 import { rotate } from "./rotate";
+import { getReadableStream } from "./provider";
 
 type Input = {
   id: string;
@@ -15,14 +15,20 @@ type Output = {
   is_valid: boolean;
 };
 
-function main() {
+async function main() {
   const result = validator.argv.safeParse(process.argv);
 
   if (!result.success) {
     process.exit(1);
   }
 
-  createReadStream(result.data)
+  const stream = await getReadableStream(result.data);
+
+  if (!stream) {
+    process.exit(1);
+  }
+
+  stream
     .pipe(parse({ headers: true }))
     .on("error", () => process.exit(1))
     .pipe(format<Input, Output>({ headers: true }))
@@ -32,7 +38,7 @@ function main() {
       if (!result.success) {
         return next(null, {
           id: row.id,
-          json: '[]',
+          json: "[]",
           is_valid: false,
         });
       }

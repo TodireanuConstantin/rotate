@@ -89,6 +89,20 @@ describe("validator", () => {
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenCalledWith(resolve(input[2]), fs.constants.R_OK);
     });
+
+    it("should be valid when url", () => {
+      const spy = jest.spyOn(fs, "accessSync").mockImplementation(() => {
+        throw new Error();
+      });
+
+      const input = ["arg0", "arg1", "http://test.com"];
+
+      const { success } = validator.argv.safeParse(input);
+
+      expect(success).toBe(true);
+
+      expect(spy).toHaveBeenCalledTimes(0);
+    });
   });
 });
 
