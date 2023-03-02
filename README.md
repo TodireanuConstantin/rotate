@@ -11,8 +11,11 @@ npm i
 
 npm run build
 
-# Example 
+# Example path 
 node ./dist/cli.js ./input/input.csv > ./input/output.csv
+
+#Example url
+node ./dist/cli.js https://raw.githubusercontent.com/TodireanuConstantin/rotate/main/input/input.csv  > ./input/output.csv
 ```
 
 Run tests:
