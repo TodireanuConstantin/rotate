@@ -1,0 +1,34 @@
+{
+  "name": "rotate",
+  "version": "0.0.1",
+  "description": "rotate matrix",
+  "main": "src/cli.js",
+  "scripts": {
+    "build": "eslint . --ext .ts && tsc",
+    "dev": "ts-node ./src/cli.ts ./input/input.csv > ./input/output.csv",
+    "test": "jest"
+  },
+  "keywords": [
+    "csv",
+    "cli",
+    "rotate",
+    "rotate-matrix"
+  ],
+  "author": "Todireanu Constantin",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.4.0",
+    "@types/node": "^18.13.0",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "eslint": "^8.34.0",
+    "jest": "^29.4.2",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "fast-csv": "^4.3.6",
+    "zod": "^3.20.6"
+  }
+}
